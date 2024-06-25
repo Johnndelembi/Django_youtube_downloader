@@ -1,0 +1,413 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Downloader</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+      <div class="container">
+        <a href="" class="navbar-brand">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-music-note-list" viewBox="0 0 16 16">
+            <path d="M12 13c0 1.105-1.12 2-2.5 2S7 14.105 7 13s1.12-2 2.5-2 2.5.895 2.5 2"/>
+            <path fill-rule="evenodd" d="M12 3v10h-1V3z"/>
+            <path d="M11 2.82a1 1 0 0 1 .804-.98l3-.6A1 1 0 0 1 16 2.22V4l-5 1z"/>
+            <path fill-rule="evenodd" d="M0 11.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5m0-4A.5.5 0 0 1 .5 7H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5m0-4A.5.5 0 0 1 .5 3H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5"/>
+          </svg>
+          Freebie
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navmenu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a href="#" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" data-bs-target="#FAQ" data-bs-toggle="modal">FAQ</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" data-bs-target="#Contact" data-bs-toggle="modal">Contacts</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!--FAQ Modal -->
+<div class="modal fade" id="FAQ" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+            <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
+          </svg>
+          Frequently Asked Questions
+        </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                Is this Service free?
+              </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">Yes, our service to convert and download videos from youtube in the best possible format is completely free and without the need for a software or creating an account.</div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                Is there a limit size for audio or video files?
+              </button>
+            </h2>
+            <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">Currently there is no limit to convert videos to Mp3 audio, MP4 video. Compared to other online converters on the market, we are among the few sites that offer this service without limit and costs.</div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                What qualities are available for video and audio formats?
+              </button>
+            </h2>
+            <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">We have the highest qualities for audio and video files, such as: Audio (MP3) - from 64kbps to 320kbps. Video MP4, Mkv and Webm - 144p, 240p, 360p, 480p, 720p, 1080p Full HD, 1440p, 4k and 8k resolution.</div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                Is this service compatible with all devices and browsers?
+              </button>
+            </h2>
+            <div id="flush-collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">Yes, we support all existing browsers, our site is compatible with all devices on the web, PC, Phones, Tablets, MAC and all other devices!</div>
+            </div>
+          </div>
+        </div>
+        <div class="container text-start mt-4">
+          <caption>
+            <a href="https://tally.so/r/mR4yJJ" class="text-secondary"><i>Have a question that is <b>not</b> in the <b>frequently asked</b> section? Click here to reach our client support team</i></a>
+          </caption>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Contacts Modal -->
+<div class="modal fade" id="Contact" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Contact Us</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container text-center mb-4">
+          <h2>
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-chat-quote" viewBox="0 0 16 16">
+              <path d="M2.678 11.894a1 1 0 0 1 .287.801 11 11 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8 8 0 0 0 8 14c3.996 0 7-2.807 7-6s-3.004-6-7-6-7 2.808-7 6c0 1.468.617 2.83 1.678 3.894m-.493 3.905a22 22 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a10 10 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105"/>
+              <path d="M7.066 6.76A1.665 1.665 0 0 0 4 7.668a1.667 1.667 0 0 0 2.561 1.406c-.131.389-.375.804-.777 1.22a.417.417 0 0 0 .6.58c1.486-1.54 1.293-3.214.682-4.112zm4 0A1.665 1.665 0 0 0 8 7.668a1.667 1.667 0 0 0 2.561 1.406c-.131.389-.375.804-.777 1.22a.417.417 0 0 0 .6.58c1.486-1.54 1.293-3.214.682-4.112z"/>
+            </svg> 
+            Send us a Message
+          </h2>
+        </div>
+        <div class="container mb-2">
+          <p>
+            Thank you for choosing Freebie! We're here to assist you with any questions, 
+            feedback, or concerns you may have. 
+            Please feel free to reach out to us using the contact information below:
+          </p>
+        </div>
+        <div class="container text-center py-2 d-grid">
+          <caption>
+            <a href="https://wa.link/orb6we" class="btn btn-success mb-2"><i class="bi bi-whatsapp"></i> Whatsapp Us</a>
+            <a href="mailto:williamjohnie61@gmail.com" class="btn btn-secondary"><i class="bi bi-envelope-at"></i> Email Us</a>
+          </caption>
+        </div>
+        <div class="container mb-2 mt-4">
+          <p>
+            <strong>FAQs:</strong> Before reaching out, check out our Frequently Asked Questions page. 
+            You might find the answer you're looking for there.
+          </p>
+        </div>
+        <div class="container mb-2">
+          <p>
+            <strong>Feedback:</strong> Have suggestions for improvement or encountered a bug? Let us know via our <b><a href="https://tally.so/r/mR4yJJ">client support link.</a></b>
+          </p>
+        </div>
+        <div class="container mb-2">
+          <p>
+            <strong>Social Media:</strong> Connect with us on social media for updates, news, and more
+          </p>
+        </div>
+        <div class="container mb-2">
+          <p>
+            Follow us on <strong><a href="https://x.com/Johnwills171" class="text-decoration-none text-dark">X/Twitter</a></strong>
+          </p>
+        </div>
+        <div class="container mb-2">
+          <p>
+            We value your feedback and strive to provide the best service possible. Thank you for choosing our YouTube Downloader service!
+          </p>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+<!-- main -->
+    <section class="bg-image" id="carousel-section" style="background-image: url('static/img/cover.jpeg'); background-size: cover;"> 
+    <div class="container align-items-center col-md-6 py-5">
+        <h1 class="container mt-5 text-center">
+          <strong>
+            <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="currentColor" class="bi bi-music-note-list text-danger" viewBox="0 0 16 16">
+              <path d="M12 13c0 1.105-1.12 2-2.5 2S7 14.105 7 13s1.12-2 2.5-2 2.5.895 2.5 2"/>
+              <path fill-rule="evenodd" d="M12 3v10h-1V3z"/>
+              <path d="M11 2.82a1 1 0 0 1 .804-.98l3-.6A1 1 0 0 1 16 2.22V4l-5 1z"/>
+              <path fill-rule="evenodd" d="M0 11.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5m0-4A.5.5 0 0 1 .5 7H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5m0-4A.5.5 0 0 1 .5 3H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5"/>
+            </svg>
+          Freebie YouTube Downloader
+          </strong>
+        </h1> 
+            <form method="post">
+                {% csrf_token %}
+                <div class="container mx-auto mt-2 text-center d-grid">
+                    <label for="{{ form.url.id_for_label }}" class="form-label">{{ form.url.label }}</label><br>
+                    <input class="form-control" type="text" id="{{ form.url.id_for_label }}" name="url" placeholder="Enter YouTube URL">
+                    <!-- {{ form.url }} -->
+                </div>
+                <div class="container text-center mt-4 mb-4">
+                    <label for="{{ form.format.id_for_label }}" class="form-label">Choose between Video/Audio</label>
+                    <!-- {{ form.label.format|crispy }} -->
+                    <div class="container mb-2 card card-header rounded-3">
+                        {{ form.format }}
+                    </div>  
+                </div>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button type="submit" class="btn btn-dark rounded-3"><i class="bi bi-download"></i>  Download</button>
+                </div>    
+            </form>
+    </div>
+    </section>   
+    
+    <section>
+        <div class="container p-4">
+            <div class="card rounded-4">
+                <div class="card-header">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="currentColor" class="bi bi-three-dots text-secondary" viewBox="0 0 16 16">
+                        <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"/>
+                      </svg>
+                </div>
+                <div class="card-body my-3 text-center">
+                    <h2>Download YouTube Videos to MP3 or MP4 in High Quality</h2>
+                    <p>
+                        Freebie is the fastest Youtube to MP3/MP4 converter web app, 
+                        it helps you convert Youtube videos to MP3 and MP4 best quality files for downloads. 
+                        With our Youtube Downloader tool, you can save videos in the best formats like: 
+                        MP3, MP4, MKV, Webm and m4a for free. Enjoy unlimited conversions, 
+                        regardless of the chosen format, we offer you the best audio or video quality, 
+                        depending on your preferences.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container p-4 d-md-flex justify-content-between">
+            <div class="container py-5 text-center border rounded-4 shadow">
+                <div class="my-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" fill="currentColor" class="bi bi-youtube text-danger" viewBox="0 0 16 16">
+                        <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"/>
+                      </svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                      </svg>    
+                </div>
+                
+                  <h2 class="mt-3">YouTube Video Search</h2>
+                  <p class="px-3">
+                    To find your favorite video, 
+                    simply input its title into the search box on the converter and click the 'search' button. 
+                    We'll handle the rest, 
+                    providing you with the finest results tailored to your request.
+                  </p>
+            </div>
+
+            <div class="mx-2">
+                <br><br>
+            </div>
+
+            <div class="container p-4 text-center border rounded-4 shadow ">
+                <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" fill="currentColor" class="bi bi-file-earmark-arrow-down-fill my-3 text-primary" viewBox="0 0 16 16">
+                    <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1m-1 4v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 11.293V7.5a.5.5 0 0 1 1 0"/>
+                  </svg>
+
+                  <h2 class="mt-3">Unlimited Downloads</h2>
+                  <p class="px-3">
+                    Freebie uses an algorithm which gives you the best quality from a series different qualites.
+                    enabling you to have unlimited downloads from a variety of MP3 and MP4 qualities the best quality possible, 
+                   Additionally, we provide the option to save videos as MP4 files for offline viewing,
+                  </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-3">
+      <div class="container px-4">
+        <h2>The Best Youtube Search Engine!</h2>
+      </div>
+      <div class="container px-4">
+        <p>
+          Discover our unmatched service, enhanced by state-of-the-art technology meeting all your needs. 
+          this downloder tool stands out as the premier video/audio search engine for downloading songs, 
+          soundtracks, albums, dj mixes and more.
+        </p>
+      </div>
+    </section>
+
+    <!-- fOOTER -->
+    <section class="bg-dark text-light">
+    <div class="container">
+        <footer class="container py-5 fixed mx-auto">
+          <div class="row">
+            <div class="col-md-5 offset-md-1 mb-3 text-start">
+              <h4 class="mb-4">In Partnership with</h4>
+              <ul class="nav flex-column d-flex">
+                  <li class="nav-item mb-4"><img src="{% static 'img/partner2.png'%}" width="80" height="80" alt=""></li>
+              </ul>
+            </div>
+
+            <div class="col-6 col-md-2 mb-3">
+              <h4 class="mb-4">COMPANY</h4>
+              <ul class="nav flex-column d-grid">
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light" data-bs-toggle="modal" data-bs-target="#FAQ">FAQ</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light" data-bs-toggle="modal" data-bs-target="#Contact">Contact Us</a></li>
+              </ul>
+            </div>
+
+            <div class="col-6 col-md-2 mb-3">
+              <h4 class="mb-4">LEGAL</h4>
+              <ul class="nav flex-column d-grid">
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Terms of Use</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Privacy Policy</a></li>
+              </ul>
+            </div>
+      
+            <div class="col-md-5 offset-md-1 mb-3 text-start mt-4">
+              <form>
+                <h4>Disclaimer</h4>  
+                <caption>
+                    We don't own, cache or host any files on our server, 
+                    all links are from external sources on the web that we don't have access. 
+                    Use this youtube downloader for LEGAL entertainment purposes only. 
+                    Do not download copyrighted material without permission from the owner.
+                </caption>
+              </form>
+            </div>
+          </div>
+      
+          <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+            <p>&copy; 2024 Ndelembi. All rights reserved.</p>
+            <ul class="list-unstyled d-flex">
+              <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
+              <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
+              <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
+            </ul>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
+
+
+
+
+
+<!-- {% load static %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Downloader</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+    
+    <div class="container col-md-6">
+        <div class="align-items-center">
+            <h1 class="mt-5">YouTube Downloader</h1>
+        </div>
+        
+        <div class="d-grid">
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="url" class="form-label">Input YouTube URL</label>
+                    {{ form|crispy }}
+                </div>
+            </form>
+
+            <form method="post" class="d-grid"> 
+                {% csrf_token %}   
+                <div class="mb-3">
+                    <label for="format" class="form-label">Download Format</label> -->
+                    <!-- {{ form|crispy }}
+                </div>
+                <button type="submit" class="btn btn-primary">Download</button>
+            </form>
+        </div>
+        
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>  -->
